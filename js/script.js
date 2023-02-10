@@ -40,3 +40,53 @@ document.getElementById('exampleInputEmail1').addEventListener('keyup', function
         submitButton.setAttribute('disabled', true);        
     }
 })
+
+/* OPTIONAL SECTION 1
+ * Change image on mouseenter
+ * Change image of a backpack to its corresponding jacket
+ * For example, bag-1.png become jacket-1.png on mouseenter
+ */
+
+const images = document.getElementById('backpack').querySelectorAll('img');
+
+/**
+ * The getImageNumberFromPath function takes an image path and 
+ * returns the number of the image.
+ * 
+ *
+ * @param event Get the source path of an image
+ *
+ * @return The number of the image in the path
+ *
+ */
+function getImageNumberFromPath(event){
+    const text = event.target.src;
+    const pattern = /\d+(?=.png)/;  // match .png formats
+    const result = text.match(pattern);
+
+    return result[0];
+}
+
+images.forEach(function(img) {
+    img.addEventListener("mouseenter", function(event) {
+        const imageNumberEnter = getImageNumberFromPath(event);
+        filepathEnter = './images/other/jacket-' + imageNumberEnter + '.png';
+        event.target.src = filepathEnter;
+    });
+});
+
+images.forEach(img => {
+    img.addEventListener("mouseleave", e => {
+        const imageNumberLeave = getImageNumberFromPath(e);
+        filepathLeave = './images/bags/bag-' + imageNumberLeave + '.png';
+        e.target.src = filepathLeave;
+    });
+});
+
+/* OPTIONAL SECTION 2
+ * Change background colour when an empty space is clicked on 
+ * the Let's Stay in Touch section
+ */
+document.getElementById('subscribe').addEventListener('dblclick', function(){
+    this.style.backgroundColor = 'tomato';    
+})
