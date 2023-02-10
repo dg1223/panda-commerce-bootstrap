@@ -25,7 +25,18 @@ for (button of buyNowButtons){
 // Remove the Buy Now button when clicked. Do it for every Buy Now button
 for (button of buyNowButtons){
     button.addEventListener('click', function(event){
-        event.target.parentNode.removeChild(event.target);
-                
+        event.target.parentNode.removeChild(event.target);                
     })
 }
+
+// Disable the Submit button in the Let's Stay in Touch section
+// Enable it only when user types the word 'email'
+document.getElementById('exampleInputEmail1').addEventListener('keyup', function(event){    
+    const text = event.target.value;
+    const submitButton = document.getElementById('btn-submit');    
+    if (text === 'email'){
+        submitButton.removeAttribute('disabled');        
+    } else {
+        submitButton.setAttribute('disabled', true);        
+    }
+})
